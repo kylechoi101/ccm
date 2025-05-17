@@ -1,0 +1,72 @@
+/* Base map container and layout */
+html,
+body {
+  margin: 0;
+  padding: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#map {
+  position: relative; /* needed for tooltip positioning and legend */
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#map svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* let map interactions through empty areas */
+}
+
+/* Shared color variables */
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+/* Compute mixed color based on departure ratio */
+#map svg circle,
+.legend > div {
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Style map circles */
+#map svg circle {
+  fill: var(--color);
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1px;
+  pointer-events: auto; /* enable tooltips and hover */
+  cursor: pointer;
+}
+
+/* Legend container */
+.legend {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  margin-block: 1em;
+}
+
+/* Legend entries */
+.legend > div {
+  background-color: var(--color);
+  color: white;
+  padding: 0.25em 0.75em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  text-align: center;
+}

@@ -1,0 +1,37 @@
+body {
+    font: 100%/1.5 system-ui, sans-serif;
+    display: flex;
+    flex-flow: column;
+    max-width: 80em;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1em;
+  }
+/* Layout the header in one row, push slider to the right */
+.time-filter {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    margin-bottom: 0.5em;
+}
+
+/* Push the label+slider all the way to the right */
+.time-filter label {
+    margin-left: auto;
+}
+
+/* Keep the <time> (numeric display) on its own line */
+#selectedTime {
+    display: block;
+    font-weight: bold;
+}
+
+/* Hide the “(any time)” hint when a real time is selected */
+#anyTimeHint {
+    font-style: italic;
+    color: #666;
+    display: block;
+}
+
+/* When the slider value ≠ –1, you’ll hide the hint in JS: */
